@@ -181,6 +181,13 @@ m = model.to(device)
 
 optimizer = torch.optim.AdamW(m.parameters(), lr=learning_rate)
 
+total = sum(p.numel() for p in model.parameters())
+trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+print(f"Total parameters: {total:,}")
+print(f"Trainable parameters: {trainable_params:,}")
+
+exit()
+# Training
 
 for iter in range(max_iters):
     if iter % eval_interval == 0:
